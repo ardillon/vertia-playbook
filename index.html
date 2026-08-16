@@ -141,7 +141,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
       <h1>Playbook Comercial</h1>
       <p class="subtitle">Como Vertia capta, califica y convierte un edificio en cliente, como se documenta en el CRM, y como se gestiona la reventa y expansion de cuentas activas.</p>
       <div class="hero-meta">
-        <span class="pill">Version 2.0 &middot; 11 ago 2026</span>
+        <span class="pill">Version 2.2 &middot; 16 ago 2026</span>
         <span class="pill">Cobertura: edificios corporativos, Quito</span>
         <span class="pill">CRM: HubSpot Sales Starter</span>
       </div>
@@ -231,7 +231,8 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
               <tr><td>3 &middot; Contacto</td><td>Nombre, cargo, correo, telefono, horario preferido</td><td>Identifica que buyer persona esta escribiendo</td></tr>
             </tbody>
           </table>
-          <div class="callout rule"><span class="label">Calificacion en dos filtros</span><p><strong>Lead&rarr;MQL</strong> es automatico (oficinas &ge;25, antiguedad &lt;30, zona de cobertura). <strong>MQL&rarr;SQL</strong> es manual: el asesor confirma presupuesto, autoridad y urgencia tras la primera llamada. HubSpot Starter no tiene scoring predictivo, asi que ningun negocio se abre sin pasar por este segundo filtro humano.</p></div>
+          <div class="callout rule"><span class="label">Calificacion en dos filtros, una sola propiedad</span><p><code>estado_lead</code> avanza en dos momentos distintos: <strong>Nuevo&rarr;MQL</strong> es automatico (oficinas &ge;25, antiguedad &lt;30, zona de cobertura). <strong>MQL&rarr;SQL</strong> es manual: el asesor confirma presupuesto, autoridad y urgencia tras la primera llamada y actualiza el valor el mismo. HubSpot Starter no tiene scoring predictivo, asi que ningun negocio se abre sin pasar por este segundo filtro humano.</p></div>
+          <div class="callout warning"><span class="label">Contacto vs. Negocio</span><p>Lead y MQL son <strong>etapas del objeto Contacto</strong> &mdash; nunca existe un Negocio mientras el contacto esta en esos estados. El Negocio (pipeline, seccion 3) no se crea hasta que el asesor confirma SQL en la llamada. Antes de eso, el contacto solo aparece en la lista &ldquo;Vertia | MQL&rdquo; (seccion 6), en espera de esa llamada &mdash; no hay ninguna tarjeta de negocio que gestionar todavia.</p></div>
 
           <h3><span class="subnum">2.2</span>Automatizaciones al recibir un diagnostico</h3>
           <table>
@@ -252,18 +253,19 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             <tbody>
               <tr><td>Todos los Leads</td><td>Lifecycle &ge; Lead con Diagnostico enviado</td><td>Marketing</td></tr>
               <tr><td>Leads Nuevos</td><td>estado_lead = Nuevo</td><td>Asesor (revision diaria)</td></tr>
-              <tr><td>MQL</td><td>Oficinas &ge;25, antiguedad &lt;30, zona cubierta</td><td>Marketing + asesor</td></tr>
-              <tr><td>SQL</td><td>estado_calificacion = SQL (manual)</td><td>Unico universo elegible para abrir negocio</td></tr>
+              <tr><td>MQL</td><td>estado_lead = MQL (automatico: oficinas &ge;25, antiguedad &lt;30, zona cubierta)</td><td>Marketing + asesor</td></tr>
+              <tr><td>SQL</td><td>estado_lead = SQL (manual, tras confirmar presupuesto/autoridad/urgencia)</td><td>Unico universo elegible para abrir negocio</td></tr>
               <tr><td>Clientes</td><td>Negocio en Ganado, contrato activo</td><td>Gerencia + Cuenta/Operaciones</td></tr>
               <tr><td>Vista de Negocios</td><td>Pipeline = Adquisicion o Reventa</td><td>Asesor y Gerente Comercial (tablero)</td></tr>
             </tbody>
           </table>
+          <div class="callout info"><span class="label">Una sola propiedad, tres estados</span><p><code>estado_lead</code> es la unica propiedad que gobierna el embudo de preventa, con exactamente tres valores posibles: <strong>Nuevo</strong> (recien llegado) &rarr; <strong>MQL</strong> (cumple ICP, asignado automaticamente) &rarr; <strong>SQL</strong> (validado por el asesor). No existe un cuarto valor ni una propiedad separada de calificacion &mdash; las tres listas de la tabla anterior filtran directamente sobre este mismo campo.</p></div>
         </section>
 
         <section id="pipeline">
           <h2><span class="num">03</span>Pipeline de adquisicion</h2>
           <ul class="timeline">
-            <li><span class="stage-no">01</span><h4>Diagnostico recibido</h4></li>
+            <li><span class="stage-no">01</span><h4>SQL confirmado</h4></li>
             <li><span class="stage-no">02</span><h4>Diagnostico agendado</h4></li>
             <li><span class="stage-no">03</span><h4>Diagnostico realizado</h4></li>
             <li><span class="stage-no">04</span><h4>Propuesta presentada</h4></li>
@@ -273,10 +275,11 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             <li class="done"><span class="stage-no">08</span><h4>Ganado</h4></li>
             <li class="lost"><span class="stage-no">09</span><h4>Perdido</h4></li>
           </ul>
+          <div class="callout rule"><span class="label">Etapa 1 = creacion del Negocio</span><p>El pipeline no tiene una etapa &ldquo;pre-SQL&rdquo;: la primera etapa del Negocio es la confirmacion de SQL misma. No existe un negocio &ldquo;a la espera&rdquo; mientras el contacto es Lead o MQL &mdash; ver seccion 2.4.</p></div>
           <table>
             <thead><tr><th>Etapa</th><th>Evidencia para avanzar</th><th>Responsable</th></tr></thead>
             <tbody>
-              <tr><td>Diagnostico recibido</td><td>Negocio creado y asociado al Edificio</td><td>Asesor</td></tr>
+              <tr><td>SQL confirmado</td><td>Presupuesto, autoridad y urgencia confirmados en llamada; Negocio creado y asociado al Edificio</td><td>Asesor</td></tr>
               <tr><td>Diagnostico agendado</td><td>Fecha y hora confirmadas con el contacto</td><td>Asesor</td></tr>
               <tr><td>Diagnostico realizado</td><td>Informe con hallazgos adjunto al negocio</td><td>Asesor</td></tr>
               <tr><td>Propuesta presentada</td><td>Propuesta (tarifa USD 500-800) presentada en reunion</td><td>Asesor</td></tr>
@@ -308,13 +311,13 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
 
         <section id="proceso">
           <h2><span class="num">05</span>Proceso comercial end-to-end</h2>
-          <figure class="diagram"><div class="flow"><span class="chip">Landing</span><span class="sep">&rarr;</span><span class="chip">Formulario</span><span class="sep">&rarr;</span><span class="chip milestone">Lead</span><span class="sep">&rarr;</span><span class="chip">MQL</span><span class="sep">&rarr;</span><span class="chip">SQL</span><span class="sep">&rarr;</span><span class="chip">Diagnostico</span><span class="sep">&rarr;</span><span class="chip">Propuesta</span><span class="sep">&rarr;</span><span class="chip">Negociacion</span><span class="sep">&rarr;</span><span class="chip">Contrato</span><span class="sep">&rarr;</span><span class="chip milestone">Cliente</span></div></figure>
+          <figure class="diagram"><div class="flow"><span class="chip">Landing</span><span class="sep">&rarr;</span><span class="chip">Formulario</span><span class="sep">&rarr;</span><span class="chip milestone">Lead</span><span class="sep">&rarr;</span><span class="chip">MQL</span><span class="sep">&rarr;</span><span class="chip milestone">SQL</span><span class="sep">&rarr;</span><span class="chip">Diagnostico</span><span class="sep">&rarr;</span><span class="chip">Propuesta</span><span class="sep">&rarr;</span><span class="chip">Negociacion</span><span class="sep">&rarr;</span><span class="chip">Contrato</span><span class="sep">&rarr;</span><span class="chip milestone">Cliente</span></div></figure>
           <table>
             <thead><tr><th>Fase</th><th>Quien actua</th><th>SLA / control</th></tr></thead>
             <tbody>
               <tr><td>Lead</td><td>Asesor asignado</td><td>Primer contacto &le; 2h habiles</td></tr>
               <tr><td>MQL</td><td>Automatico</td><td>Sin intervencion humana</td></tr>
-              <tr><td>SQL</td><td>Asesor comercial</td><td>Presupuesto + autoridad + urgencia confirmados</td></tr>
+              <tr><td>SQL</td><td>Asesor comercial</td><td>Presupuesto + autoridad + urgencia confirmados &mdash; aqui se crea el Negocio</td></tr>
               <tr><td>Diagnostico</td><td>Asesor + Facility Manager</td><td>Agendado &le;5 dias desde SQL</td></tr>
               <tr><td>Propuesta</td><td>Asesor</td><td>Presentada &le;7 dias desde diagnostico</td></tr>
               <tr><td>Contrato</td><td>Gerente Comercial</td><td>Seguimiento activo cada 5 dias</td></tr>
@@ -506,9 +509,10 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
           <h2><span class="num">09</span>Glosario</h2>
           <table class="tight">
             <tbody>
-              <tr><td><strong>Lead / MQL / SQL</strong></td><td>Contacto sin calificar &middot; cumple ICP estructural &middot; validado por el asesor como oportunidad real</td></tr>
+              <tr><td><strong>Lead / MQL / SQL</strong></td><td>Los tres valores de la propiedad <code>estado_lead</code> en el objeto Contacto: sin calificar &middot; cumple ICP estructural &middot; validado por el asesor tras la llamada. Ninguno de los tres tiene Negocio asociado hasta SQL.</td></tr>
               <tr><td><strong>ICP</strong></td><td>Perfil de cliente ideal</td></tr>
-              <tr><td><strong>Pipeline</strong></td><td>Vertia opera dos: adquisicion (secc. 3) y reventa/cross-sell/upsell (secc. 4)</td></tr>
+              <tr><td><strong>Pipeline</strong></td><td>Vertia opera dos, ambos a nivel de Negocio: adquisicion, que arranca en SQL confirmado (secc. 3), y reventa/cross-sell/upsell (secc. 4)</td></tr>
+              <tr><td><strong>SQL confirmado</strong></td><td>Primera etapa del pipeline de adquisicion. Momento exacto en que se crea el Negocio en el CRM &mdash; no existe negocio antes de esta etapa.</td></tr>
               <tr><td><strong>Win Rate</strong></td><td>Ganados / (ganados + perdidos)</td></tr>
               <tr><td><strong>CAC / LTV</strong></td><td>Costo de adquirir un cliente / ingreso total esperado durante su permanencia</td></tr>
               <tr><td><strong>MRR</strong></td><td>Ingreso recurrente mensual de contratos activos</td></tr>
@@ -527,6 +531,8 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
               <tr><td>1.1</td><td>2026-08-11</td><td>Se fusiona &ldquo;Propuesta en elaboracion&rdquo; con &ldquo;Propuesta presentada&rdquo;; se agrega el pipeline de Reventa/Cross-selling/Upselling.</td></tr>
               <tr><td>1.2</td><td>2026-08-11</td><td>Estructura de pagina unica al estilo AWKI: hero, nav de anclas y secciones numeradas corridas.</td></tr>
               <tr><td>2.0</td><td>2026-08-11</td><td>Version condensada al estilo AWKI/Seractiva: acordeones extensos reemplazados por tablas compactas; dashboards y gobierno comercial en una sola columna para evitar el corte horizontal.</td></tr>
+              <tr><td>2.1</td><td>2026-08-16</td><td>Ajuste al esquema de Seractiva: el pipeline de adquisicion arranca en &ldquo;SQL confirmado&rdquo; (antes &ldquo;Diagnostico recibido&rdquo;). Se aclara en la seccion 2 y en el glosario que Lead y MQL son estados del Contacto sin Negocio asociado; el Negocio no existe hasta que el asesor confirma SQL.</td></tr>
+              <tr><td>2.2</td><td>2026-08-16</td><td>Se consolidan &ldquo;estado_lead&rdquo; y &ldquo;estado_calificacion&rdquo; en una sola propiedad: <code>estado_lead</code> con exactamente tres valores (Nuevo, MQL, SQL), alineada 1 a 1 con las tres listas de trabajo de la seccion 2.3.</td></tr>
             </tbody>
           </table>
         </section>
@@ -535,7 +541,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
 
     <footer class="footer-page">
       <span><strong>VERTIA</strong> &middot; Playbook Comercial &mdash; Documento interno de uso confidencial</span>
-      <span>Version 2.0 &middot; 11 ago 2026</span>
+      <span>Version 2.2 &middot; 16 ago 2026</span>
     </footer>
   </article>
 
