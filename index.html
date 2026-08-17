@@ -141,7 +141,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
       <h1>Playbook Comercial</h1>
       <p class="subtitle">Como Vertia capta, califica y convierte un edificio en cliente, como se documenta en el CRM, y como se gestiona la reventa y expansion de cuentas activas.</p>
       <div class="hero-meta">
-        <span class="pill">Version 2.2 &middot; 16 ago 2026</span>
+        <span class="pill">Version 2.6 &middot; 16 ago 2026</span>
         <span class="pill">Cobertura: edificios corporativos, Quito</span>
         <span class="pill">CRM: HubSpot Sales Starter</span>
       </div>
@@ -152,16 +152,18 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
         <h3>Contenido</h3>
         <a href="#vertia">1. Quienes somos: Vertia</a>
         <a href="#crm">2. Como funciona el CRM</a>
-        <a href="#pipeline">3. Pipeline de adquisicion</a>
-        <a href="#reventa">4. Pipeline de reventa</a>
-        <a href="#proceso">5. Proceso end-to-end</a>
-        <a href="#reglas">6. Reglas y roles</a>
-        <a href="#kpis">7. KPIs por area</a>
-        <a href="#dashboards">8. Dashboards y gobierno comercial</a>
-        <a href="#glosario">9. Glosario</a>
-        <a href="#versiones">10. Control de versiones</a>
+        <a href="#apollo">3. Secuencia de Prospeccion Apollo</a>
+        <a href="#pipeline">4. Pipeline de adquisicion</a>
+        <a href="#reventa">5. Pipeline de reventa</a>
+        <a href="#proceso">6. Proceso end-to-end</a>
+        <a href="#reglas">7. Reglas operativas</a>
+        <a href="#kpis">8. KPIs por area</a>
+        <a href="#dashboards">9. Dashboards y gobierno comercial</a>
+        <a href="#glosario">10. Glosario</a>
       </nav>
 
+      <main>
+        
       <main>
         <section id="vertia">
           <h2><span class="num">01</span>Quienes somos: Vertia</h2>
@@ -193,7 +195,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             <tbody>
               <tr><td>Sobrecostos</td><td>Control financiero mensual + volumen agregado de proveedores</td><td>Costo de administracion vs. presupuesto</td></tr>
               <tr><td>Falta de transparencia</td><td>Directorio ve los mismos reportes que el equipo operativo</td><td>NPS del Administrador/Directorio</td></tr>
-              <tr><td>Falta de indicadores</td><td>Sistema de metricas con meta y semaforo (seccion 7)</td><td>Permanencia del cliente</td></tr>
+              <tr><td>Falta de indicadores</td><td>Sistema de metricas con meta y semaforo (seccion 8)</td><td>Permanencia del cliente</td></tr>
               <tr><td>Mantenimiento reactivo</td><td>Cronograma de mantenimiento preventivo por sistema</td><td>Incidentes recurrentes</td></tr>
               <tr><td>Mala gestion de proveedores</td><td>Base de proveedores evaluados con volumen agregado</td><td>Costo por m&sup2; vs. benchmark</td></tr>
               <tr><td>Problemas de seguridad</td><td>Auditoria de seguridad en el Diagnostico Ejecutivo</td><td>Retencion y renovacion</td></tr>
@@ -231,8 +233,8 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
               <tr><td>3 &middot; Contacto</td><td>Nombre, cargo, correo, telefono, horario preferido</td><td>Identifica que buyer persona esta escribiendo</td></tr>
             </tbody>
           </table>
-          <div class="callout rule"><span class="label">Calificacion en dos filtros, una sola propiedad</span><p><code>estado_lead</code> avanza en dos momentos distintos: <strong>Nuevo&rarr;MQL</strong> es automatico (oficinas &ge;25, antiguedad &lt;30, zona de cobertura). <strong>MQL&rarr;SQL</strong> es manual: el asesor confirma presupuesto, autoridad y urgencia tras la primera llamada y actualiza el valor el mismo. HubSpot Starter no tiene scoring predictivo, asi que ningun negocio se abre sin pasar por este segundo filtro humano.</p></div>
-          <div class="callout warning"><span class="label">Contacto vs. Negocio</span><p>Lead y MQL son <strong>etapas del objeto Contacto</strong> &mdash; nunca existe un Negocio mientras el contacto esta en esos estados. El Negocio (pipeline, seccion 3) no se crea hasta que el asesor confirma SQL en la llamada. Antes de eso, el contacto solo aparece en la lista &ldquo;Vertia | MQL&rdquo; (seccion 6), en espera de esa llamada &mdash; no hay ninguna tarjeta de negocio que gestionar todavia.</p></div>
+          <div class="callout rule"><span class="label">MQL directo al enviar el formulario</span><p>El Paso 1 del formulario ya captura los criterios de ICP (oficinas, antiguedad, zona), asi que la automatizacion asigna <code>estado_lead = MQL</code> de inmediato al recibir el envio &mdash; no existe un paso intermedio de &ldquo;Nuevo&rdquo; para este canal. <strong>MQL&rarr;SQL</strong> sigue siendo manual: el asesor confirma presupuesto, autoridad y urgencia tras la primera llamada y actualiza el valor el mismo. Los contactos que llegan por prospeccion en Apollo si arrancan en Nuevo (seccion 3), porque no traen datos de ICP todavia.</p></div>
+          <div class="callout warning"><span class="label">Contacto vs. Negocio</span><p>Lead y MQL son <strong>etapas del objeto Contacto</strong> &mdash; nunca existe un Negocio mientras el contacto esta en esos estados. El Negocio (pipeline, seccion 4) no se crea hasta que el asesor confirma SQL en la llamada. Antes de eso, el contacto solo aparece en la lista &ldquo;Vertia | MQL&rdquo; (seccion 2.3), en espera de esa llamada &mdash; no hay ninguna tarjeta de negocio que gestionar todavia.</p></div>
 
           <h3><span class="subnum">2.2</span>Automatizaciones al recibir un diagnostico</h3>
           <table>
@@ -240,8 +242,8 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             <tbody>
               <tr><td>Correo de agradecimiento</td><td>Envio del formulario</td><td>Primera prueba de continuidad operacional</td></tr>
               <tr><td>Notificacion al asesor</td><td>Envio del formulario</td><td>Sostiene el KPI Tiempo de respuesta</td></tr>
-              <tr><td>Estado Lead = Nuevo</td><td>Envio del formulario</td><td>Distingue leads sin trabajar</td></tr>
-              <tr><td>Lifecycle = Lead</td><td>Contacto nuevo o sin lifecycle previo</td><td>Compatibilidad con reportes nativos de HubSpot</td></tr>
+              <tr><td>Estado Lead = MQL</td><td>Envio del formulario</td><td>El Paso 1 ya captura los criterios de ICP: clasifica MQL de inmediato, sin pasar por &ldquo;Nuevo&rdquo;</td></tr>
+              <tr><td>Lifecycle = Lead Calificado por Marketing</td><td>Envio del formulario</td><td>Alinea el lifecycle nativo de HubSpot (MQL) con <code>estado_lead</code>, sin pasos intermedios</td></tr>
               <tr><td>Crear tarea comercial</td><td>Notificacion recibida (manual en Starter)</td><td>Garantiza una accion humana asignada</td></tr>
               <tr><td>Alta en lista inteligente</td><td>Envio o cambio de estado</td><td>Alimenta los dashboards sin trabajo manual</td></tr>
             </tbody>
@@ -252,18 +254,191 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             <thead><tr><th>Lista / Vista</th><th>Criterio</th><th>Quien la usa</th></tr></thead>
             <tbody>
               <tr><td>Todos los Leads</td><td>Lifecycle &ge; Lead con Diagnostico enviado</td><td>Marketing</td></tr>
-              <tr><td>Leads Nuevos</td><td>estado_lead = Nuevo</td><td>Asesor (revision diaria)</td></tr>
-              <tr><td>MQL</td><td>estado_lead = MQL (automatico: oficinas &ge;25, antiguedad &lt;30, zona cubierta)</td><td>Marketing + asesor</td></tr>
+              <tr><td>Leads Nuevos</td><td>estado_lead = Nuevo (prospeccion manual, ej. Apollo &mdash; seccion 3)</td><td>Asesor (revision diaria)</td></tr>
+              <tr><td>MQL</td><td>estado_lead = MQL (automatico al enviar el formulario: oficinas &ge;25, antiguedad &lt;30, zona cubierta)</td><td>Marketing + asesor</td></tr>
               <tr><td>SQL</td><td>estado_lead = SQL (manual, tras confirmar presupuesto/autoridad/urgencia)</td><td>Unico universo elegible para abrir negocio</td></tr>
               <tr><td>Clientes</td><td>Negocio en Ganado, contrato activo</td><td>Gerencia + Cuenta/Operaciones</td></tr>
               <tr><td>Vista de Negocios</td><td>Pipeline = Adquisicion o Reventa</td><td>Asesor y Gerente Comercial (tablero)</td></tr>
             </tbody>
           </table>
-          <div class="callout info"><span class="label">Una sola propiedad, tres estados</span><p><code>estado_lead</code> es la unica propiedad que gobierna el embudo de preventa, con exactamente tres valores posibles: <strong>Nuevo</strong> (recien llegado) &rarr; <strong>MQL</strong> (cumple ICP, asignado automaticamente) &rarr; <strong>SQL</strong> (validado por el asesor). No existe un cuarto valor ni una propiedad separada de calificacion &mdash; las tres listas de la tabla anterior filtran directamente sobre este mismo campo.</p></div>
+          <div class="callout info"><span class="label">Una sola propiedad, tres estados</span><p><code>estado_lead</code> es la unica propiedad que gobierna el embudo de preventa, con exactamente tres valores posibles: <strong>Nuevo</strong> (prospeccion manual sin datos de ICP aun, ej. Apollo &mdash; seccion 3) &rarr; <strong>MQL</strong> (cumple ICP; automatico al enviar el formulario web) &rarr; <strong>SQL</strong> (validado por el asesor tras la llamada). No existe un cuarto valor ni una propiedad separada de calificacion &mdash; las listas de la tabla anterior filtran directamente sobre este mismo campo.</p></div>
+        </section>
+
+        <section id="apollo">
+          <h2><span class="num">03</span>Secuencia de Prospeccion Apollo</h2>
+          <p class="lede-block">Cadencia de prospeccion saliente para contactos que no llegan por el formulario web. Con el plan <strong>Apollo Basic</strong>, todo el ciclo &mdash; levantamiento, enriquecimiento y envio de los 4 toques &mdash; se hace dentro de Apollo; HubSpot recibe la sincronizacion del contacto solo para registro y seguimiento en el CRM. Es 100% por email (sin llamadas ni pasos de LinkedIn), con una variante de copy para cada uno de los 2 segmentos de ICP ya probados en las campanas de Search.</p>
+
+          <h3><span class="subnum">3.1</span>Reglas de la secuencia</h3>
+          <div class="grid cols-2">
+            <div class="card"><span class="k">Herramientas</span><p><strong>Apollo Basic:</strong> Find Local Business para el levantamiento, enriquecimiento de contactos y Sequences para el envio &mdash; todo incluido en el plan, sin upgrade. <strong>HubSpot:</strong> recibe la sincronizacion nativa Apollo&harr;HubSpot solo como registro del CRM.</p></div>
+            <div class="card"><span class="k">Canal</span><p>Solo email. Sin llamadas, sin LinkedIn, sin SMS.</p></div>
+            <div class="card"><span class="k">Toques</span><p>4 correos en total, espaciados segun la cadencia de la seccion 3.3.</p></div>
+            <div class="card"><span class="k">Segmentos</span><p>Persona Operativa (Administrador / Gerente Administrativo) y Persona Directorio (Presidente del Directorio / Propietario inversionista) &mdash; mismos 2 segmentos del test A/B de Search.</p></div>
+            <div class="card"><span class="k">Alta en el CRM</span><p>Apollo sincroniza el contacto a HubSpot automaticamente al importarlo. El asesor confirma <code>estado_lead = Nuevo</code> y que quede en la lista &ldquo;Vertia | Apollo&rdquo; (seccion 2.3) &mdash; a diferencia del formulario web, aqui no hay datos de ICP todavia, por eso no entra directo como MQL.</p></div>
+          </div>
+          <div class="callout warning"><span class="label">Salida de la secuencia</span><p>Cualquier respuesta (positiva o negativa) detiene la secuencia de inmediato &mdash; Apollo desinscribe al contacto automaticamente al detectar respuesta en el hilo. Si el contacto confirma presupuesto, autoridad y urgencia en esa respuesta, el asesor actualiza <code>estado_lead = SQL</code> en HubSpot y crea el Negocio (regla de la seccion 7.1: nunca antes de SQL).</p></div>
+
+          <h3><span class="subnum">3.2</span>Levantamiento con Find Local Business</h3>
+          <p>Find Local Business es la herramienta de Apollo (incluida en Basic) que busca negocios via Google Maps y los importa como Cuentas, agregandolos automaticamente a una lista lista para enriquecer y prospectar. Encaja directo con el ICP de Vertia porque la segmentacion ya es geografica &mdash; las mismas 6 zonas que usamos en las campanas de Search.</p>
+          <table>
+            <thead><tr><th>Paso</th><th>Que hacer</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Buscar en Find Local Business, zona por zona: Shyris, Republica del Salvador, Naciones Unidas, Eloy Alfaro, Amazonas, Cumbaya (mismos radios de la campana de Search).</td></tr>
+              <tr><td>2</td><td>Filtrar por categoria de negocio compatible con edificios corporativos/oficinas (excluir residencial, igual que en las negativas de Search).</td></tr>
+              <tr><td>3</td><td>Importar como Cuentas &mdash; Apollo las agrega automaticamente a una lista de trabajo.</td></tr>
+              <tr><td>4</td><td>Enriquecer cada cuenta para encontrar los contactos decisores: Administrador/Gerente Administrativo (Persona Operativa) o Presidente del Directorio/Propietario (Persona Directorio).</td></tr>
+              <tr><td>5</td><td>Clasificar cada contacto en el segmento correspondiente e inscribirlo en la secuencia de Apollo de esa persona.</td></tr>
+            </tbody>
+          </table>
+
+          <h3><span class="subnum">3.3</span>Cadencia general (4 toques)</h3>
+          <table>
+            <thead><tr><th>Toque</th><th>Dia</th><th>Objetivo</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Dia 1</td><td>Presentacion + gancho del dolor principal</td></tr>
+              <tr><td>2</td><td>Dia 3</td><td>Evidencia/prueba de valor, refuerza el mensaje clave del segmento</td></tr>
+              <tr><td>3</td><td>Dia 7</td><td>Responde la objecion mas comun del segmento + CTA directo</td></tr>
+              <tr><td>4</td><td>Dia 14</td><td>Cierre breve tipo &ldquo;break-up email&rdquo;, deja la puerta abierta</td></tr>
+            </tbody>
+          </table>
+
+          <h3><span class="subnum">3.4</span>Planificacion de envios</h3>
+          <p class="lede-block" style="font-size:var(--fs-1);">Calendario semanal de levantamiento e inscripcion, para que el volumen de contactos nuevos sea constante y las 6 zonas roten de forma pareja.</p>
+          <table>
+            <thead><tr><th>Dia</th><th>Actividad</th></tr></thead>
+            <tbody>
+              <tr><td>Lunes</td><td>Find Local Business: levantar 15&ndash;20 cuentas nuevas. Semanas impares: Shyris, Rep. del Salvador, Naciones Unidas. Semanas pares: Eloy Alfaro, Amazonas, Cumbaya.</td></tr>
+              <tr><td>Lunes&ndash;Martes</td><td>Enriquecer cuentas: identificar contacto decisor y clasificar por segmento (Operativa / Directorio).</td></tr>
+              <tr><td>Miercoles</td><td>Confirmar sincronizacion con HubSpot: <code>estado_lead = Nuevo</code>, lista &ldquo;Vertia | Apollo&rdquo; actualizada.</td></tr>
+              <tr><td>Miercoles</td><td>Inscribir en la secuencia de Apollo correspondiente (Persona Operativa o Persona Directorio).</td></tr>
+              <tr><td>Continuo</td><td>Apollo envia automaticamente los 4 toques por contacto, segun la cadencia de la seccion 3.3 (dias 1, 3, 7 y 14 desde su inscripcion).</td></tr>
+            </tbody>
+          </table>
+          <table>
+            <thead><tr><th>Metrica de volumen</th><th>Meta mensual (referencia)</th></tr></thead>
+            <tbody>
+              <tr><td>Cuentas nuevas levantadas (Find Local Business)</td><td>&asymp;70&ndash;80 (15&ndash;20/semana)</td></tr>
+              <tr><td>Contactos inscritos en secuencia</td><td>&asymp;70&ndash;80</td></tr>
+              <tr><td>Creditos Apollo consumidos (de 1,000/mes del plan Basic)</td><td>&asymp;150&ndash;250 (busqueda + enriquecimiento)</td></tr>
+            </tbody>
+          </table>
+          <div class="callout info"><span class="label">Ajustar sobre la marcha</span><p>Estas cifras son un punto de partida, no una meta rigida &mdash; calibrar el volumen semanal segun cuantos creditos de Apollo realmente consume cada cuenta enriquecida, y segun la capacidad real del asesor para revisar y clasificar contactos antes de inscribirlos.</p></div>
+
+          <h3><span class="subnum">3.5</span>Plantillas &middot; Persona Operativa</h3>
+          <p class="lede-block" style="font-size:var(--fs-1);">Administrador / Gerente Administrativo. Copy listo para pegar en la secuencia de Apollo &mdash; reemplazar <code>[Nombre]</code> por el nombre del contacto.</p>
+
+          <div class="card" style="margin-bottom:var(--sp-4);">
+            <span class="k">Toque 1 &middot; Dia 1</span>
+            <h4>Asunto: &iquest;Quien revisa el mantenimiento de su edificio antes de que falle?</h4>
+            <p>Hola [Nombre],<br><br>
+            Le escribo porque en Vertia trabajamos con administradores de edificios corporativos en Quito, ayudandolos a pasar de un mantenimiento reactivo a uno preventivo, sin agregarles carga operativa.<br><br>
+            No buscamos reemplazar su gestion &mdash; la fortalecemos con procesos documentados, proveedores evaluados y un cronograma de mantenimiento que reduce las emergencias antes de que ocurran.<br><br>
+            Si le interesa, podemos ofrecerle un Diagnostico Ejecutivo gratuito y sin compromiso de su edificio, donde identificamos riesgos y oportunidades de mejora en menos de una semana.<br><br>
+            &iquest;Tendria 15 minutos esta semana para conversarlo?<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
+
+          <div class="card" style="margin-bottom:var(--sp-4);">
+            <span class="k">Toque 2 &middot; Dia 3</span>
+            <h4>Asunto: Como reducimos las emergencias en edificios como el suyo</h4>
+            <p>Hola [Nombre],<br><br>
+            Le escribi hace unos dias sobre como apoyamos a administradores de edificios corporativos con una gestion preventiva.<br><br>
+            Un dato que solemos compartir: cada dolar invertido en mantenimiento preventivo evita entre 3 y 5 dolares en reparaciones de emergencia. Ademas, al centralizar la gestion de proveedores entre toda nuestra cartera de edificios, conseguimos mejores condiciones que trabajando con proveedores aislados.<br><br>
+            No reemplazamos su trabajo &mdash; le damos las herramientas y el respaldo para que su gestion sea mas predecible y con menos urgencias.<br><br>
+            &iquest;Le interesaria conocer como aplicariamos esto a su edificio?<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
+
+          <div class="card" style="margin-bottom:var(--sp-4);">
+            <span class="k">Toque 3 &middot; Dia 7</span>
+            <h4>Asunto: &ldquo;Ya tenemos administrador&rdquo; &mdash; lo entendemos</h4>
+            <p>Hola [Nombre],<br><br>
+            Se que probablemente ya cuentan con un administrador o un equipo interno gestionando el edificio &mdash; y eso esta bien. Vertia no llega para reemplazar esa gestion, sino para complementarla con procesos, indicadores y una red de proveedores evaluados que muchas administraciones internas no tienen tiempo de construir.<br><br>
+            La mayoria de los edificios con los que trabajamos empezaron exactamente en esa posicion: con un administrador ya en el rol, buscando simplemente reducir la carga operativa diaria y las urgencias recurrentes.<br><br>
+            Si quiere, le comparto un diagnostico gratuito de su edificio, sin ningun compromiso, para que usted decida si tiene sentido.<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
+
+          <div class="card">
+            <span class="k">Toque 4 &middot; Dia 14</span>
+            <h4>Asunto: Cierro este tema por ahora</h4>
+            <p>Hola [Nombre],<br><br>
+            No he sabido de usted, asi que asumo que este no es el momento adecuado &mdash; sin problema.<br><br>
+            Voy a dejar de escribirle por ahora, pero si en algun momento quiere revisar como esta funcionando el mantenimiento y la gestion de proveedores de su edificio, con gusto conversamos. El Diagnostico Ejecutivo sigue disponible sin costo ni compromiso.<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
+
+          <h3><span class="subnum">3.6</span>Plantillas &middot; Persona Directorio</h3>
+          <p class="lede-block" style="font-size:var(--fs-1);">Presidente del Directorio / Propietario inversionista. Copy listo para pegar en la secuencia de Apollo &mdash; reemplazar <code>[Nombre]</code> por el nombre del contacto.</p>
+
+          <div class="card" style="margin-bottom:var(--sp-4);">
+            <span class="k">Toque 1 &middot; Dia 1</span>
+            <h4>Asunto: Protegiendo el valor de su edificio a largo plazo</h4>
+            <p>Estimado/a [Nombre],<br><br>
+            Le escribo porque en Vertia trabajamos con Directorios y propietarios de edificios corporativos en Quito, protegiendo el valor patrimonial del activo a traves de una administracion preventiva, transparente y basada en indicadores.<br><br>
+            Sabemos que, como Presidente del Directorio, su prioridad es preservar el patrimonio de los copropietarios y evitar sorpresas &mdash; financieras, legales u operativas. Por eso trabajamos con reportes claros, con el mismo nivel de informacion para el Directorio que para nuestro equipo operativo.<br><br>
+            Nos gustaria ofrecerle un Diagnostico Ejecutivo gratuito de su edificio, sin ningun compromiso, donde identificamos riesgos que podrian estar afectando el valor del activo.<br><br>
+            &iquest;Tendria 15 minutos esta semana para conversarlo?<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
+
+          <div class="card" style="margin-bottom:var(--sp-4);">
+            <span class="k">Toque 2 &middot; Dia 3</span>
+            <h4>Asunto: Lo que la mayoria de Directorios no ve hasta que es tarde</h4>
+            <p>Estimado/a [Nombre],<br><br>
+            Le escribi hace unos dias sobre como protegemos el valor patrimonial de edificios corporativos.<br><br>
+            En nuestra experiencia, los sobrecostos y riesgos legales rara vez aparecen de golpe &mdash; se acumulan en silencio cuando no hay indicadores claros de gestion. Por eso nuestros reportes financieros y de mantenimiento estan disenados para que el Directorio tenga visibilidad total, sin depender unicamente de lo que reporte el administrador.<br><br>
+            Protegemos el valor de su inversion con datos, no con promesas.<br><br>
+            &iquest;Le interesaria revisar como se veria esto aplicado a su edificio?<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
+
+          <div class="card" style="margin-bottom:var(--sp-4);">
+            <span class="k">Toque 3 &middot; Dia 7</span>
+            <h4>Asunto: Se que ya tienen un administrador</h4>
+            <p>Estimado/a [Nombre],<br><br>
+            Entiendo que el edificio ya cuenta con una administracion vigente &mdash; es normal, y no buscamos reemplazarla de inmediato. Lo que si podemos ofrecer es una segunda mirada: un diagnostico independiente que le muestre al Directorio si el costo actual de administracion realmente esta protegiendo el valor del activo, o si hay riesgos que no se estan viendo.<br><br>
+            El costo de no controlar la gestion casi siempre termina siendo mayor que el costo de administrarla bien.<br><br>
+            Si le sirve, con gusto coordinamos un diagnostico gratuito, sin compromiso alguno.<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
+
+          <div class="card">
+            <span class="k">Toque 4 &middot; Dia 14</span>
+            <h4>Asunto: Ultima nota sobre su edificio</h4>
+            <p>Estimado/a [Nombre],<br><br>
+            No he tenido noticias suyas, asi que entiendo que este no es el momento &mdash; quedo tranquilo con eso.<br><br>
+            Dejo de escribirle por ahora, pero la oferta del Diagnostico Ejecutivo gratuito sigue en pie si en algun momento el Directorio quiere revisar la proteccion del valor patrimonial del edificio.<br><br>
+            Saludos,<br>
+            Diego Guerrero<br>
+            Vertia &middot; Protegemos el valor de su edificio<br>
+            +593 99-834-4847 &middot; info@vertia.ec &middot; vertia.ec</p>
+          </div>
         </section>
 
         <section id="pipeline">
-          <h2><span class="num">03</span>Pipeline de adquisicion</h2>
+          <h2><span class="num">04</span>Pipeline de adquisicion</h2>
           <ul class="timeline">
             <li><span class="stage-no">01</span><h4>SQL confirmado</h4></li>
             <li><span class="stage-no">02</span><h4>Diagnostico agendado</h4></li>
@@ -275,7 +450,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             <li class="done"><span class="stage-no">08</span><h4>Ganado</h4></li>
             <li class="lost"><span class="stage-no">09</span><h4>Perdido</h4></li>
           </ul>
-          <div class="callout rule"><span class="label">Etapa 1 = creacion del Negocio</span><p>El pipeline no tiene una etapa &ldquo;pre-SQL&rdquo;: la primera etapa del Negocio es la confirmacion de SQL misma. No existe un negocio &ldquo;a la espera&rdquo; mientras el contacto es Lead o MQL &mdash; ver seccion 2.4.</p></div>
+          <div class="callout rule"><span class="label">Etapa 1 = creacion del Negocio</span><p>El pipeline no tiene una etapa &ldquo;pre-SQL&rdquo;: la primera etapa del Negocio es la confirmacion de SQL misma. No existe un negocio &ldquo;a la espera&rdquo; mientras el contacto es Lead o MQL &mdash; ver seccion 2.1.</p></div>
           <table>
             <thead><tr><th>Etapa</th><th>Evidencia para avanzar</th><th>Responsable</th></tr></thead>
             <tbody>
@@ -294,7 +469,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
         </section>
 
         <section id="reventa">
-          <h2><span class="num">04</span>Pipeline de reventa</h2>
+          <h2><span class="num">05</span>Pipeline de reventa</h2>
           <p class="lede-block">Gestiona la expansion de valor dentro de la cartera de clientes activos: renovacion de contrato (<strong>reventa</strong>), servicios adicionales (<strong>cross-selling</strong> &mdash; seguros, remodelaciones, sostenibilidad) y migracion a un plan superior (<strong>upselling</strong>). Es independiente del pipeline de adquisicion: solo se abre contra edificios ya en la lista de Clientes.</p>
           <ul class="timeline">
             <li><span class="stage-no">01</span><h4>Cliente activo</h4></li>
@@ -310,7 +485,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
         </section>
 
         <section id="proceso">
-          <h2><span class="num">05</span>Proceso comercial end-to-end</h2>
+          <h2><span class="num">06</span>Proceso comercial end-to-end</h2>
           <figure class="diagram"><div class="flow"><span class="chip">Landing</span><span class="sep">&rarr;</span><span class="chip">Formulario</span><span class="sep">&rarr;</span><span class="chip milestone">Lead</span><span class="sep">&rarr;</span><span class="chip">MQL</span><span class="sep">&rarr;</span><span class="chip milestone">SQL</span><span class="sep">&rarr;</span><span class="chip">Diagnostico</span><span class="sep">&rarr;</span><span class="chip">Propuesta</span><span class="sep">&rarr;</span><span class="chip">Negociacion</span><span class="sep">&rarr;</span><span class="chip">Contrato</span><span class="sep">&rarr;</span><span class="chip milestone">Cliente</span></div></figure>
           <table>
             <thead><tr><th>Fase</th><th>Quien actua</th><th>SLA / control</th></tr></thead>
@@ -327,8 +502,8 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
         </section>
 
         <section id="reglas">
-          <h2><span class="num">06</span>Reglas y roles</h2>
-          <h3><span class="subnum">6.1</span>Reglas de disciplina en el CRM</h3>
+          <h2><span class="num">07</span>Reglas operativas</h2>
+          <h3><span class="subnum">7.1</span>Reglas de disciplina en el CRM</h3>
           <table>
             <thead><tr><th>Regla</th><th>Por que existe</th></tr></thead>
             <tbody>
@@ -340,26 +515,13 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
               <tr><td>Siempre asociar Empresa y Edificio</td><td>Es la regla mas critica: sin ella se pierde el historico comercial</td></tr>
             </tbody>
           </table>
-
-          <h3><span class="subnum">6.2</span>Matriz RACI</h3>
-          <table>
-            <thead><tr><th>Fase</th><th>Asesor</th><th>Gerente Comercial</th><th>RevOps</th><th>Marketing</th></tr></thead>
-            <tbody>
-              <tr><td>Captacion y calificacion</td><td>R</td><td>A</td><td>C</td><td>R</td></tr>
-              <tr><td>Diagnostico</td><td>R</td><td>I</td><td>I</td><td>I</td></tr>
-              <tr><td>Propuesta y negociacion</td><td>R</td><td>A</td><td>I</td><td>I</td></tr>
-              <tr><td>Cierre y contrato</td><td>C</td><td>R</td><td>I</td><td>I</td></tr>
-              <tr><td>Reventa / cross-sell / upsell</td><td>C</td><td>A</td><td>I</td><td>I</td></tr>
-            </tbody>
-          </table>
-          <p><strong>R</strong> ejecuta &middot; <strong>A</strong> aprueba &middot; <strong>C</strong> se consulta &middot; <strong>I</strong> se informa.</p>
         </section>
 
         <section id="kpis">
-          <h2><span class="num">07</span>KPIs por area</h2>
-          <p class="lede-block">Cada KPI tiene meta y semaforo: verde en meta, amarillo en alerta, rojo dispara accion correctiva en la reunion de gobierno correspondiente (seccion 8).</p>
+          <h2><span class="num">08</span>KPIs por area</h2>
+          <p class="lede-block">Cada KPI tiene meta y semaforo: verde en meta, amarillo en alerta, rojo dispara accion correctiva en la reunion de gobierno correspondiente (seccion 9).</p>
 
-          <h3><span class="subnum">7.1</span>Marketing</h3>
+          <h3><span class="subnum">8.1</span>Marketing</h3>
           <table>
             <thead><tr><th>KPI</th><th>Formula</th><th>Meta</th></tr></thead>
             <tbody>
@@ -371,7 +533,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             </tbody>
           </table>
 
-          <h3><span class="subnum">7.2</span>Preventa</h3>
+          <h3><span class="subnum">8.2</span>Preventa</h3>
           <table>
             <thead><tr><th>KPI</th><th>Formula</th><th>Meta</th></tr></thead>
             <tbody>
@@ -383,7 +545,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             </tbody>
           </table>
 
-          <h3><span class="subnum">7.3</span>Ventas</h3>
+          <h3><span class="subnum">8.3</span>Ventas</h3>
           <table>
             <thead><tr><th>KPI</th><th>Formula</th><th>Meta</th></tr></thead>
             <tbody>
@@ -396,7 +558,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             </tbody>
           </table>
 
-          <h3><span class="subnum">7.4</span>Clientes</h3>
+          <h3><span class="subnum">8.4</span>Clientes</h3>
           <table>
             <thead><tr><th>KPI</th><th>Formula</th><th>Meta</th></tr></thead>
             <tbody>
@@ -409,7 +571,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             </tbody>
           </table>
 
-          <h3><span class="subnum">7.5</span>Operacion</h3>
+          <h3><span class="subnum">8.5</span>Operacion</h3>
           <table>
             <thead><tr><th>KPI</th><th>Formula</th><th>Meta</th></tr></thead>
             <tbody>
@@ -422,9 +584,9 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
         </section>
 
         <section id="dashboards">
-          <h2><span class="num">08</span>Dashboards y gobierno comercial</h2>
+          <h2><span class="num">09</span>Dashboards y gobierno comercial</h2>
 
-          <h3><span class="subnum">8.1</span>Dashboard ejecutivo</h3>
+          <h3><span class="subnum">9.1</span>Dashboard ejecutivo</h3>
           <div class="grid cols-1">
             <div class="card dash-card">
               <h4>Dashboard 1 &middot; Gerencia General</h4>
@@ -464,7 +626,7 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             </div>
           </div>
 
-          <h3><span class="subnum">8.2</span>Gobierno comercial</h3>
+          <h3><span class="subnum">9.2</span>Gobierno comercial</h3>
           <div class="grid cols-1">
             <div class="card dash-card">
               <h4>Daily comercial</h4>
@@ -506,12 +668,12 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
         </section>
 
         <section id="glosario">
-          <h2><span class="num">09</span>Glosario</h2>
+          <h2><span class="num">10</span>Glosario</h2>
           <table class="tight">
             <tbody>
               <tr><td><strong>Lead / MQL / SQL</strong></td><td>Los tres valores de la propiedad <code>estado_lead</code> en el objeto Contacto: sin calificar &middot; cumple ICP estructural &middot; validado por el asesor tras la llamada. Ninguno de los tres tiene Negocio asociado hasta SQL.</td></tr>
               <tr><td><strong>ICP</strong></td><td>Perfil de cliente ideal</td></tr>
-              <tr><td><strong>Pipeline</strong></td><td>Vertia opera dos, ambos a nivel de Negocio: adquisicion, que arranca en SQL confirmado (secc. 3), y reventa/cross-sell/upsell (secc. 4)</td></tr>
+              <tr><td><strong>Pipeline</strong></td><td>Vertia opera dos, ambos a nivel de Negocio: adquisicion, que arranca en SQL confirmado (secc. 4), y reventa/cross-sell/upsell (secc. 5)</td></tr>
               <tr><td><strong>SQL confirmado</strong></td><td>Primera etapa del pipeline de adquisicion. Momento exacto en que se crea el Negocio en el CRM &mdash; no existe negocio antes de esta etapa.</td></tr>
               <tr><td><strong>Win Rate</strong></td><td>Ganados / (ganados + perdidos)</td></tr>
               <tr><td><strong>CAC / LTV</strong></td><td>Costo de adquirir un cliente / ingreso total esperado durante su permanencia</td></tr>
@@ -521,27 +683,13 @@ table.tight td, table.tight th{padding:.45rem .6rem;}
             </tbody>
           </table>
         </section>
-
-        <section id="versiones">
-          <h2><span class="num">10</span>Control de versiones</h2>
-          <table>
-            <thead><tr><th>Version</th><th>Fecha</th><th>Cambios</th></tr></thead>
-            <tbody>
-              <tr><td>1.0</td><td>2026-07-19</td><td>Creacion de la arquitectura del playbook (15 secciones).</td></tr>
-              <tr><td>1.1</td><td>2026-08-11</td><td>Se fusiona &ldquo;Propuesta en elaboracion&rdquo; con &ldquo;Propuesta presentada&rdquo;; se agrega el pipeline de Reventa/Cross-selling/Upselling.</td></tr>
-              <tr><td>1.2</td><td>2026-08-11</td><td>Estructura de pagina unica al estilo AWKI: hero, nav de anclas y secciones numeradas corridas.</td></tr>
-              <tr><td>2.0</td><td>2026-08-11</td><td>Version condensada al estilo AWKI/Seractiva: acordeones extensos reemplazados por tablas compactas; dashboards y gobierno comercial en una sola columna para evitar el corte horizontal.</td></tr>
-              <tr><td>2.1</td><td>2026-08-16</td><td>Ajuste al esquema de Seractiva: el pipeline de adquisicion arranca en &ldquo;SQL confirmado&rdquo; (antes &ldquo;Diagnostico recibido&rdquo;). Se aclara en la seccion 2 y en el glosario que Lead y MQL son estados del Contacto sin Negocio asociado; el Negocio no existe hasta que el asesor confirma SQL.</td></tr>
-              <tr><td>2.2</td><td>2026-08-16</td><td>Se consolidan &ldquo;estado_lead&rdquo; y &ldquo;estado_calificacion&rdquo; en una sola propiedad: <code>estado_lead</code> con exactamente tres valores (Nuevo, MQL, SQL), alineada 1 a 1 con las tres listas de trabajo de la seccion 2.3.</td></tr>
-            </tbody>
-          </table>
-        </section>
+      </main>
       </main>
     </div>
 
     <footer class="footer-page">
       <span><strong>VERTIA</strong> &middot; Playbook Comercial &mdash; Documento interno de uso confidencial</span>
-      <span>Version 2.2 &middot; 16 ago 2026</span>
+      <span>Version 2.6 &middot; 16 ago 2026</span>
     </footer>
   </article>
 
